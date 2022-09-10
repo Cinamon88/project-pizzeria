@@ -82,6 +82,13 @@
   }
 
   const app = {
+
+    initData: function(){
+      const thisApp = this;
+  
+      thisApp.data = dataSource;
+    },
+    
     initMenu: function(){
       const thisApp = this;
       console.log('thisApp.data:', thisApp.data);
@@ -94,11 +101,6 @@
       console.log('testProduct:', testProduct); */
     },
 
-    initData: function(){
-      const thisApp = this;
-  
-      thisApp.data = dataSource;
-    },
 
     init: function(){
       const thisApp = this;
