@@ -54,18 +54,19 @@
 
   class Product{
     constructor(id, data){
-      const thisProduct = this;
+      const thisProduct = this; /* czy ta linijka konstruktora urachamia renderInMenu? */
 
       thisProduct.id = id;
       thisProduct.data = data;
 
       thisProduct.renderInMenu();
-      
+      thisProduct.initAccordion();
+
       console.log('new Product:', thisProduct);
     }
 
     renderInMenu(){
-      const thisProduct = this;
+      const thisProduct = this; 
 
       /* generate HTML based on template */
       const generatedHTML = templates.menuProduct(thisProduct.data);
@@ -79,6 +80,13 @@
       /* add element to menu */
       menuContainer.appendChild(thisProduct.element);
     }
+
+    initAccordion(){
+      const thisProduct = this;
+      
+      console.log(thisProduct);
+    }
+   
   }
 
   const app = {
@@ -88,7 +96,7 @@
   
       thisApp.data = dataSource;
     },
-    
+
     initMenu: function(){
       const thisApp = this;
       console.log('thisApp.data:', thisApp.data);
