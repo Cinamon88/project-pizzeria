@@ -62,6 +62,8 @@
       thisProduct.renderInMenu();
       thisProduct.getElements();
       thisProduct.initAccordion();
+      thisProduct.initOrderForm();
+      thisProduct.processOrder();
       
 
       console.log('new Product:', thisProduct);
@@ -124,7 +126,19 @@
 
       console.log(thisProduct);
     }
+
+    initOrderForm(){
+      const thisProduct = this;
+
+      console.log(thisProduct, this.initOrderForm);
+    }
    
+    processOrder(){
+      const thisProduct = this;
+
+      console.log(thisProduct, this.processOrder);
+    }
+
   }
 
   const app = {
