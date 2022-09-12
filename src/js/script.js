@@ -67,9 +67,11 @@
       thisProduct.processOrder();
       
 
+      
+
       // console.log('new Product:', thisProduct);
     }
-
+    
     renderInMenu(){
       const thisProduct = this; 
 
@@ -231,8 +233,19 @@
     constructor(element){
       const thisWidget = this;
 
+      thisWidget.getElements(element);
+      
       console.log('AmountWidget:', thisWidget);
       console.log('constructor arguments:', element);
+    }
+
+    getElements(element){
+      const thisWidget = this;
+    
+      thisWidget.element = element;
+      thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
+      thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
+      thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
     }
   }
 
