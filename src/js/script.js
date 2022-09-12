@@ -174,8 +174,16 @@
           const option = param.options[optionId];
           console.log(optionId, option);
 
+          const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
+
+          /* find optionImage of class .paramId-optionId in images */
+          const optionImage = thisProduct.imageWrapper.querySelector(`.${paramId}-${optionId}`);
+          console.log('optionImage:', optionImage);
+
           /* check if there is param with a name of paramId in formData and if it includes option Id */
-          if(formData[paramId] && formData[paramId].includes(optionId)){
+          if(optionSelected) {
+
+            /* check if option is not default */ 
             if(!option.default){
 
               /* add option price to price variable */
@@ -190,6 +198,19 @@
               price -= option.price;
             }
           } 
+
+          /* check if there is optionImage with a name of paramId and in formData */
+          if(optionImage){
+            if(optionSelected){
+
+              /* add class active */
+              optionImage.classList.add(classNames.menuProduct.imageVisible);
+            } else {
+
+              /*remove class active */
+              optionImage.classList.remove(classNames.menuProduct.imageVisible);
+            }
+          }
         }
       }
 
