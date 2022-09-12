@@ -262,6 +262,8 @@
       if(thisWidget.value !== newValue && !isNaN(newValue)){
         thisWidget.value = newValue;
       }
+
+      thisWidget.input.value = thisWidget.value;
     }
 
     initActions(){
@@ -281,6 +283,7 @@
         thisWidget.setValue(thisWidget.value + 1);
       });
     }
+    
   }
 
   const app = {
