@@ -43,8 +43,8 @@
   const settings = {
     amountWidget: {
       defaultValue: 1,
-      defaultMin: 1,
-      defaultMax: 9,
+      defaultMin: 0,
+      defaultMax: 10,
     }
   };
 
@@ -280,7 +280,7 @@
 
       
       thisWidget.input.value = thisWidget.value;
-
+      this.announce();
     }
 
 
@@ -308,8 +308,8 @@
       const event = new Event('updated');
       thisWidget.element.dispatchEvent(event);
     }
-    
   }
+
 
   const app = {
 
