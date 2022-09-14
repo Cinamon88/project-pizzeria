@@ -481,8 +481,8 @@
       thisCart.dom.totalNumber.innerHTML = totalNumber;
       thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
 
-      for (let price of thisCart.totalPrice){
-        price.innerHTML = this.totalPrice;
+      for (let product of thisCart.products){
+        product.innerHTML = this.totalPrice;
       }
 
     }
