@@ -485,12 +485,9 @@
 
       thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
       thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
-      
-      for (let item of thisCart.dom.totalPrice) {
-        item.innerHTML = thisCart.totalPrice;
-      }
-
+      thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice;
     }
+    
   }
 
   class CartProduct{
