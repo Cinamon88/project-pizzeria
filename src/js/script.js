@@ -506,6 +506,7 @@
 
       thisCartProduct.getElements(element);
       thisCartProduct.initAmountWidget();
+      thisCartProduct.initActions();
 
       // console.log(thisCartProduct);
     }
@@ -534,6 +535,34 @@
       });
     }
 
+    remove(){
+      const thisCartProduct = this;
+
+      const event = new CustomEvent('remove', { 
+        bubbles: true,
+        detail: {
+          cartProduct: thisCartProduct,
+        },
+      });
+
+      thisCartProduct.dom.wrapper.dispatchEvent(event);
+    }
+    
+    initActions(){
+      const thisCartProduct = this;
+      
+      thisCartProduct.dom.edit.addEventListener('click', function(event){
+        event.preventDefault();
+      });
+
+      thisCartProduct.dom.remove.addEventListener('click', function(event){
+        event.preventDefault();
+        
+        thisCartProduct.remove();
+        
+        console.log('remove:', thisCartProduct.remove);
+      });
+    }
   }
 
   const app = {
