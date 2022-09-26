@@ -1,3 +1,7 @@
+import {select, templates, classNames} from './settings.js';
+import utils from './utils.js';
+import AmountWidget from './components/AmountWidget.js';
+
 class Product {
   constructor(id, data) {
     const thisProduct = this; /* czy ta linijka konstruktora urachamia renderInMenu? */
@@ -186,7 +190,17 @@ class Product {
   addToCart() {
     const thisProduct = this;
 
-    app.cart.add(thisProduct.prepareCartProduct());
+    // app.cart.add(thisProduct.prepareCartProduct());
+
+    const event = new CustomEvent('add-to-cart', {
+      bubbles: true, 
+      detail: {
+        product: thisProduct,
+      },
+    });
+
+    thisProduct.element.dipsatchEvent(event);
+
   }
 
   prepareCartProduct() {
@@ -236,3 +250,5 @@ class Product {
   }
 
 }
+
+export default Product;
