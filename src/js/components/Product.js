@@ -1,6 +1,6 @@
-import {select, templates, classNames} from './settings.js';
-import utils from './utils.js';
-import AmountWidget from './components/AmountWidget.js';
+import {select, templates, classNames,} from '../settings.js';
+import utils from '../utils.js';
+import AmountWidget from '../components/AmountWidget.js';
 
 class Product {
   constructor(id, data) {
@@ -199,7 +199,7 @@ class Product {
       },
     });
 
-    thisProduct.element.dipsatchEvent(event);
+    thisProduct.element.dispatchEvent(event);
 
   }
 
