@@ -1,11 +1,15 @@
 export const select = {
   templateOf: {
+    home: '#template-home', // CODE ADDED
     menuProduct: '#template-menu-product',
     cartProduct: '#template-cart-product', // CODE ADDED
+    bookingWidget: '#template-booking-widget', // CODE ADDED
   },
   containerOf: {
     menu: '#product-list',
     cart: '#cart',
+    pages: '#pages', // CODE ADDED
+    booking: '.booking-wrapper', // CODE ADDED
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -26,6 +30,23 @@ export const select = {
       linkDecrease: 'a[href="#less"]',
       linkIncrease: 'a[href="#more"]',
     },
+    datePicker: {
+      wrapper: '.date-picker', // CODE ADDED
+      input: `input[name="date"]`, // CODE ADDED
+    },
+    hourPicker: {
+      wrapper: '.hour-picker', // CODE ADDED
+      input: 'input[type="range"]', // CODE ADDED
+      output: '.output', // CODE ADDED
+    },
+  },
+  booking: {
+    peopleAmount: '.people-amount', // CODE ADDED
+    hoursAmount: '.hours-amount', // CODE ADDED
+    tables: '.floor-plan .table', // CODE ADDED
+  },
+  nav: {
+    links: '.main-nav a',
   },
   // CODE ADDED START
   cart: {
@@ -59,6 +80,16 @@ export const classNames = {
     wrapperActive: 'active',
   },
   // CODE ADDED END
+  booking: {
+    loading: 'loading',
+    tableBooked: 'booked',
+  },
+  nav: {
+    active: 'active',
+  },
+  pages: {
+    active: 'active',
+  }
 };
 
 export const settings = {
@@ -72,10 +103,26 @@ export const settings = {
     defaultDeliveryFee: 20,
   },
   // CODE ADDED END
+  hours: {
+    open: 12,
+    close: 24,
+  },
+  datePicker: {
+    maxDaysInFuture: 14,
+  },
+  booking: {
+    tableIdAttribute: 'data-table',
+  },
   db: {
     url: '//localhost:3131',
-    products: 'products',
-    orders: 'orders',
+    product: 'product',
+    order: 'order',
+    booking: 'booking',
+    event: 'event',
+    dateStartParamKey: 'date_gte',
+    dateEndParamKey: 'date_lte',
+    notRepeatParam: 'repeat=false',
+    repeatParam: 'repeat_ne=false',
   },
 };
 
@@ -84,4 +131,6 @@ export const templates = {
   // CODE ADDED START
   cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
   // CODE ADDED END
+  bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML),
 };
+
