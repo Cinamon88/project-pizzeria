@@ -191,6 +191,9 @@ class Product {
     const thisProduct = this;
 
     // app.cart.add(thisProduct.prepareCartProduct());
+    thisProduct.name = thisProduct.data.name;
+    thisProduct.amount = thisProduct.amountWidget.value;
+    thisProduct.price = thisProduct.data.price;
 
     const event = new CustomEvent('add-to-cart', {
       bubbles: true, 
