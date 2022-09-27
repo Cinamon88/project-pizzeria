@@ -12,7 +12,6 @@ class Cart{
     thisCart.getElements(element);
     thisCart.initActions();
 
-    console.log('new Cart', thisCart);
   }
 
   getElements(element){
@@ -30,6 +29,36 @@ class Cart{
     thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
     thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
 
+  }
+
+  sendOrder(){
+    const thisCart = this;
+    const url = settings.db.url + '/' + settings.db.orders;
+
+    const payload = {
+      address: thisCart.dom.address.value,     // adres klienta wpisany w koszyku,
+      phone: thisCart.dom.phone.value,         // numer telefonu wpisany w koszyku,
+      totalPrice: thisCart.totalPrice,         // całkowita cena za zamówienie,
+      subtotalPrice: thisCart.subtotalPrice,   // cena całkowita - koszt dostawy,
+      totalNumber: thisCart.totalNumber,       // całkowita liczba sztuk,
+      deliveryFee: thisCart.deliveryFee,       // koszt dostawy,
+      products: [],                            // tablica obecnych w koszyku produktów
+    };
+      
+
+    for(let prod of thisCart.products){
+      payload.products.push(prod.getData());
+    }
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload)
+    };
+
+    fetch(url, options);
   }
 
   initActions(){
@@ -53,36 +82,7 @@ class Cart{
     });
   }
 
-  sendOrder(){
-    const thisCart = this;
-    const url = settings.db.url + '/' + settings.db.orders;
-
-    const payload = {
-      address: thisCart.dom.address.value,     // adres klienta wpisany w koszyku,
-      phone: thisCart.dom.phone.value,         // numer telefonu wpisany w koszyku,
-      totalPrice: thisCart.totalPrice,         // całkowita cena za zamówienie,
-      subtotalPrice: thisCart.subtotalPrice,   // cena całkowita - koszt dostawy,
-      totalNumber: thisCart.totalNumber,       // całkowita liczba sztuk,
-      deliveryFee: thisCart.deliveryFee,       // koszt dostawy,
-      products: [],                            // tablica obecnych w koszyku produktów
-    };
-      
-    console.log('payload:', payload);
-
-    for(let prod of thisCart.products){
-      payload.products.push(prod.getData());
-    }
-
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload)
-    };
-
-    fetch(url, options);
-  }
+  
 
   add(menuProduct){
     const thisCart = this;
@@ -99,7 +99,6 @@ class Cart{
     // console.log('adding product', menuProduct);
 
     thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-    console.log('thisCart.products', thisCart.products);
 
     thisCart.update();
 
@@ -107,33 +106,33 @@ class Cart{
 
   update(){
     const thisCart = this;
-
-    const deliveryFee = settings.cart.defaultDeliveryFee;
     thisCart.totalNumber = 0;
+    thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
     thisCart.subtotalPrice = 0;
-    thisCart.totalPrice = 0;
 
     for(let product of thisCart.products){
       thisCart.totalNumber += product.amount;
       thisCart.subtotalPrice += product.price;
+    
     }
-
-    if(thisCart.subtotalPrice != 0){
-      thisCart.totalPrice = thisCart.subtotalPrice + deliveryFee;
-      thisCart.dom.deliveryFee.innerHTML = deliveryFee;
+    
+    if (thisCart.totalNumber <= 0){
+      thisCart.deliveryFee = 0;  
+    
     }
-    else {
-      thisCart.totalPrice = 0;
-      thisCart.dom.deliveryFee.innerHTML = 0;
-    }
-
+    
+    
+    thisCart.totalPrice = thisCart.deliveryFee + thisCart.subtotalPrice;
+    
+    
+    
     thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
     thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
-    thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice;
-
-    for (let item of thisCart.dom.totalPrice) {
-      item.innerHTML = thisCart.totalPrice;
-    }
+    thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
+    
+    thisCart.dom.totalPrice.forEach((inner) => {
+      inner.innerHTML = thisCart.totalPrice;
+    });
   }
 
   remove(event){
@@ -146,9 +145,6 @@ class Cart{
 
     thisCart.update();
   }
-    
-    
-
     
 }
 

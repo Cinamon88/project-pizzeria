@@ -14,6 +14,7 @@ class CartProduct{
     thisCartProduct.getElements(element);
     thisCartProduct.initAmountWidget();
     thisCartProduct.initActions();
+    thisCartProduct.getData();
 
     // console.log(thisCartProduct);
   }
@@ -67,7 +68,6 @@ class CartProduct{
         
       thisCartProduct.remove();
         
-      console.log('remove:', thisCartProduct.remove);
     });
   }
 
