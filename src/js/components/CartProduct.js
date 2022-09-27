@@ -83,7 +83,6 @@ class CartProduct{
       params: thisCartProduct.params,
     };
 
-    console.log('data:', data);
     return data;
   }
 }
