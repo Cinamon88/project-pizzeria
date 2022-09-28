@@ -11,6 +11,7 @@ class Booking {
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
+    thisBooking.initTables();
 
   }
 
@@ -159,6 +160,46 @@ class Booking {
     }
   }
 
+  initTables(){
+    const thisBooking = this;
+
+    thisBooking.dom.roomPlan.addEventListener('click', function(event){     
+
+      const clickedElement = event.target;
+      
+      const getTableId = clickedElement.getAttribute(settings.booking.tableIdAttribute);
+      
+      let tableId = '';
+
+      if(getTableId != null){
+
+        if (clickedElement.classList.contains('table')) {
+          if (clickedElement.classList.contains(classNames.booking.tableBooked)) {
+            alert('This table is already booked');
+            return;
+          }
+          if (
+            !clickedElement.classList.contains(classNames.booking.tableSelected)
+          ) {
+            const tables = thisBooking.element.querySelectorAll(select.booking.tables);
+            for(let table of tables ){
+              table.classList.remove(classNames.booking.tableSelected);
+              tableId = '';
+            }
+            clickedElement.classList.add(classNames.booking.tableSelected);
+
+            const clickedElementId = clickedElement.getAttribute('data-table');
+            tableId = clickedElementId;
+            thisBooking.tableId = parseInt(tableId);
+
+          } else if (clickedElement.classList.contains(classNames.booking.tableSelected)){
+            clickedElement.classList.remove(classNames.booking.tableSelected);
+          } 
+        }
+      }
+    });
+  }
+
   render(element){
     const thisBooking = this;
 
@@ -175,6 +216,7 @@ class Booking {
       datePickerInput: element.querySelector(select.widgets.datePicker.wrapper),
       hourPickerInput: element.querySelector(select.widgets.hourPicker.wrapper),
       table: element.querySelectorAll(select.booking.tables),
+      roomPlan: element.querySelector(select.booking.roomPlan),
     };
 
   }
