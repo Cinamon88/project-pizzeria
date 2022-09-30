@@ -72,11 +72,12 @@
 }
 
 .gallery {
-  height: 360px;
+  height: 400px;
   display: flex;
   flex-wrap: wrap;
   align-items: space-between;
   justify-content: space-between;
+  padding-bottom: 20px;
 
   .gallery-pics {
     position: relative;
