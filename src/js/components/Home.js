@@ -1,8 +1,42 @@
 import { templates, select, classNames } from '../settings.js';
 
+const homepageData = {
+  carouselData: [
+    {
+      img: 'images/homepage/pizza-1.jpg',
+      title: 'Lorem Ipsum',
+      text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe totam inventore, debitis',
+      author: 'Kaslik Amanov'
+    },
+    {
+      img: 'images/homepage/pizza-2.jpg',
+      title: 'More Lorem',
+      text: 'In illum ullam iure necessitatibu sconsectetur rem beatae aspernatur dolores maiores, optio placeat natus magnam.',
+      author: 'Margaret Osborne'
+    },
+    {
+      img: 'images/homepage/pizza-3.jpg',
+      title: 'Even More',
+      text: 'Rem beatae aspernatur dolores maiores consectetur adipisicing elit.',
+      author: 'Rupert Sasanov'
+    }
+  ],
+
+  galleryLinks: [
+    'images/homepage/pizza-4.jpg',
+    'images/homepage/pizza-5.jpg',
+    'images/homepage/pizza-6.jpg',
+    'images/homepage/pizza-7.jpg',
+    'images/homepage/pizza-8.jpg',
+    'images/homepage/pizza-9.jpg',
+  ],
+};
+
 class Home{
   constructor(element){
     const thisHome = this;
+
+    thisHome.data = homepageData;
     thisHome.render(element);
     thisHome.initWidgets();
   }
