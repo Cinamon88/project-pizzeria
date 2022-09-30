@@ -3,13 +3,13 @@ import { templates, select, classNames } from '../settings.js';
 const homepageData = {
   carouselData: [
     {
-      img: 'images/homepage/pizza-1.jpg',
+      img: 'images/homepage/pizza-3.jpg',
       title: 'Lorem Ipsum',
       text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe totam inventore, debitis',
       author: 'Kaslik Amanov'
     },
     {
-      img: 'images/homepage/pizza-2.jpg',
+      img: 'images/homepage/pizza-3.jpg',
       title: 'More Lorem',
       text: 'In illum ullam iure necessitatibu sconsectetur rem beatae aspernatur dolores maiores, optio placeat natus magnam.',
       author: 'Margaret Osborne'
