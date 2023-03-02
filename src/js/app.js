@@ -1,5 +1,5 @@
 import { settings, select, classNames } from './settings.js';
-
+import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
 import Home from './components/Home.js';
@@ -59,6 +59,16 @@ const app = {
     }
   },
 
+  initMenu: function () {
+    const thisApp = this;
+    for (let productData in thisApp.data.products) {
+      new Product(
+        thisApp.data.products[productData].id,
+        thisApp.data.products[productData]
+      );
+    }
+  },
+
   initData: function () {
     const thisApp = this;
     thisApp.data = {};
@@ -70,6 +80,7 @@ const app = {
       })
       .then(function (parsedResponse) {
         thisApp.data.products = parsedResponse;
+        thisApp.initMenu();
       });
   },
 
